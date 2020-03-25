@@ -4,10 +4,14 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.ImageViewCompat;
@@ -77,5 +81,31 @@ public class BindingAdapterUtil {
             default:
                 return null;
         }
+    }
+
+    @BindingAdapter("clearTextOnFocus")
+    public static void clearTextOnFocus(View view, boolean focus) {
+        if (focus) {
+            view.clearFocus();
+        }
+    }
+
+    @BindingAdapter("hideKeyboardOnInputDone")
+    public static void hideKeyboardOnInputDone(EditText editText, boolean enabled) {
+        if (!enabled) return;
+        TextView.OnEditorActionListener listener = new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    view.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                    }
+                }
+                return false;
+            }
+        };
+        editText.setOnEditorActionListener(listener);
     }
 }

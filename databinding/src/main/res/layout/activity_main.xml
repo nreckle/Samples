@@ -7,6 +7,10 @@
 
         <import type="android.view.View" />
 
+        <import type="com.nreckle.databinding.util.NumberOfSetsConverters" />
+
+        <import type="com.nreckle.databinding.util.NumberOfSetsBindingAdapters" />
+
         <variable
             name="user"
             type="com.nreckle.databinding.User" />
@@ -56,20 +60,29 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:paddingLeft="@{150}"
-            android:text="@{observableUser.firstName}"
-            app:layout_constraintBottom_toTopOf="@id/image"
+            android:text="@={observableUser.firstName}"
+            app:layout_constraintBottom_toTopOf="@id/input"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView2" />
 
-        <ImageView
-            android:id="@+id/image"
+        <EditText
+            android:id="@+id/input"
+            clearTextOnFocus="@{true}"
+            hideKeyboardOnInputDone="@{true}"
+            numberOfSets="@={NumberOfSetsConverters.setArrayToString(observableUser.testInt)}"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:digits="0123456789"
+            android:ems="10"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView3" />
+            android:inputType="number"
+            app:layout_constraintTop_toBottomOf="@id/textView3"
+            tools:text="Sets:8/29" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

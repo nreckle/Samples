@@ -45,13 +45,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ObservableUser observableUser = new ObservableUser("Observable User", 25);
+        final ObservableUser observableUser = new ObservableUser("Observable User", 25, 1234);
         activityMainBinding.setObservableUser(observableUser);
 
         mUIHandler.post(new Runnable() {
             @Override
             public void run() {
                 observableUser.setFirstName("Observable User Modified firstName");
+                observableUser.setTestInt(54321);
             }
         });
     }
