@@ -21,12 +21,12 @@ public class MainActivity extends AppCompatActivity {
                 new ViewModelProvider(this).get(ChronometerViewModel.class);
         binding.setViewmodel(chronometerViewModel);
         binding.setLifecycleOwner(this);
-        if (chronometerViewModel.getTime() == -1L) {
+        if (chronometerViewModel.getStartTime() == -1L) {
             long startTime = SystemClock.elapsedRealtime();
-            chronometerViewModel.setTime(startTime);
+            chronometerViewModel.setStartTime(startTime);
             binding.chronometer.setBase(startTime);
         } else {
-            binding.chronometer.setBase(chronometerViewModel.getTime());
+            binding.chronometer.setBase(chronometerViewModel.getStartTime());
         }
 
         binding.chronometer.start();
