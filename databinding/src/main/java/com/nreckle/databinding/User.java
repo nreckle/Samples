@@ -2,7 +2,7 @@ package com.nreckle.databinding;
 
 public class User {
     private String firstName;
-    private int age;
+    public int age;
 
     public User(String firstName, int age) {
         this.firstName = firstName;

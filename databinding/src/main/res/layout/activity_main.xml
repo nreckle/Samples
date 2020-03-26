@@ -70,7 +70,7 @@
             android:id="@+id/input"
             clearTextOnFocus="@{true}"
             hideKeyboardOnInputDone="@{true}"
-            numberOfSets="@={NumberOfSetsConverters.setArrayToString(observableUser.testInt)}"
+            numberOfSets="@={NumberOfSetsConverters.setArrayToString(user.age)}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:digits="0123456789"
