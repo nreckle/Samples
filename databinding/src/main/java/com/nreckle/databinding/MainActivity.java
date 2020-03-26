@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ObservableUser observableUser = new ObservableUser("Observable User", 25, 1234);
         activityMainBinding.setObservableUser(observableUser);
+        activityMainBinding.setLifecycleOwner(this);
 
         mUIHandler.post(new Runnable() {
             @Override
